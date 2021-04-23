@@ -6,19 +6,21 @@ class base
 public: virtual int func()=0;
 };
 class son :public base
-{public:son(int a ,int b)
-    {
-        m_a=a; m_b=b;
-    }
-public: int func()
+{public: int func()
     {
         return m_a+m_b;
     }
 public:int m_a,m_b;
 };
+// 使用多态函数
+int achieve(base & base)
+{
+    return base.func();
+}
 int main(){
-    son s(10,20);
-    int x=s.func();
+    son s;
+    s.m_a=10;s.m_b=20;
+    int x= achieve(s);
     cout<<x<<endl;
     return 0;
 }
