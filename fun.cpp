@@ -45,4 +45,5 @@ int main()
 //    cat c("Tom");
 //    achieve(c);
     achieve(new cat("Tom"));
+    return 0;
 }
