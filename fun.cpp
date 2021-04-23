@@ -1,26 +1,48 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class base
+class animal
 {
-public: virtual int func()=0;
+public:animal()
+    {}
+   virtual ~animal()=0;
+public:virtual void speak()=0;
 };
-class son :public base
-{public: int func()
-    {
-        return m_a+m_b;
-    }
-public:int m_a,m_b;
-};
-// ä½¿ç”¨å¤šæ€å‡½æ•°
-int achieve(base & base)
-{
-    return base.func();
+animal::~animal() {
+    cout<<" "<<endl;
 }
-int main(){
-    son s;
-    s.m_a=10;s.m_b=20;
-    int x= achieve(s);
-    cout<<x<<endl;
-    return 0;
+class cat:public animal
+{
+public:cat(string name)
+    {
+        m_name=new string (name);
+    }
+    virtual void speak()
+    {
+        cout<<*m_name<<"Ğ¡Ã¨ÔÚËµ»°"<<endl;
+    }
+    ~cat()
+    {
+        if (m_name!=NULL)
+        {
+            cout<<"catµÄÎö¹¹"<<endl;
+            delete m_name;
+            m_name=NULL;
+        }
+    }
+public: string *m_name;
+};
+void achieve (animal *animal)
+{
+    animal->speak(); delete animal;
+}
+//void achieve (animal & p)
+//{
+//    p.speak();
+//}
+int main()
+{
+//    cat c("Tom");
+//    achieve(c);
+    achieve(new cat("Tom"));
 }
